@@ -1,0 +1,30 @@
+.slds-box.slds-theme_default {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.slds-p-around_medium {
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.custom-combobox {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.custom-input {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.custom-button {
+    display: block;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.custom-datatable {
+    margin-top: 20px;
+}

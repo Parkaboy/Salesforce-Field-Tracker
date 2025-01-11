@@ -1,0 +1,40 @@
+<template>
+    <lightning-card title="Seleccionar Objeto y Número" class="slds-box slds-theme_default">
+        <div class="slds-p-around_medium">
+            <lightning-combobox
+            name="objectPicklist"
+            label="Seleccionar Objeto"
+            value={selectedObject}
+            placeholder="Seleccionar un Objeto"
+            options={objectOptions}
+            onchange={handleObjectChange} class="custom-combobox">
+        </lightning-combobox>
+        
+        <lightning-input
+            label="Ingrese un Número"
+            value={number}
+            type="number"
+            onchange={handleNumberChange}>
+        </lightning-input>
+        
+        <lightning-button
+            label="Obtener Objetos"
+            onclick={handleButtonClick}
+            class="slds-m-top_medium">
+        </lightning-button>
+
+        </div>
+
+        <template if:true={fields}>
+            <lightning-datatable
+                data={fields}
+                columns={columns}
+                key-field="id">
+            </lightning-datatable>
+        </template>
+        
+        <template if:true={error}>
+            <p>{error}</p>
+        </template>
+    </lightning-card>
+</template>
