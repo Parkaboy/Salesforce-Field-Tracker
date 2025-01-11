@@ -12,18 +12,16 @@
  *
  **************************************************************************************************************/
 public with sharing class FieldReportController {
-    private static final String CUSTOM_OBJECT_SUFIX = 'c';
-    private static final String HISTORY_OBJECT_SUFIX = 'History';
 
     @AuraEnabled(cacheable=true)
     public static List<ObjectInfo> getObjectList() {
 
         List<ObjectInfo> lstSObjects = new List<ObjectInfo>();
-        Map<String, Schema.SObjectType> schemaMap = Schema.getGlobalDescribe();
+        Map<String, Schema.SObjectType> mapSobjectByName = Schema.getGlobalDescribe();
 
-        for (String objName : schemaMap.keySet()) {
+        for (String objName : mapSobjectByName.keySet()) {
 
-            Schema.SObjectType objType = schemaMap.get(objName);
+            Schema.SObjectType objType = mapSobjectByName.get(objName);
             Schema.DescribeSObjectResult describeResult = objType.getDescribe();
 
             if (describeResult.isSearchable() ) {
@@ -99,14 +97,14 @@ public with sharing class FieldReportController {
         String historySObject = sObjectName;
 
         if (isCustomObject(sObjectName)) {
-            historySObject = sObjectName.remove(CUSTOM_OBJECT_SUFIX);
+            historySObject = sObjectName.remove(FieldReportConstants.CUSTOM_OBJECT_SUFIX);
         }
 
-        return historySObject + HISTORY_OBJECT_SUFIX;
+        return historySObject + FieldReportConstants.HISTORY_OBJECT_SUFIX;
     }
 
 
-        /*********************************************************************************************************
+    /*********************************************************************************************************
      * @name			getFields
      * @author			Martín De León
      * @created			27 / 12 / 2024
@@ -118,7 +116,7 @@ public with sharing class FieldReportController {
 
         Boolean isCustomObject = false;
 
-        if (sObjectName.endsWithIgnoreCase(CUSTOM_OBJECT_SUFIX)) {
+        if (sObjectName.endsWithIgnoreCase(FieldReportConstants.CUSTOM_OBJECT_SUFIX)) {
             isCustomObject = true;
         }
 
